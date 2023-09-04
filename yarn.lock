@@ -2131,10 +2131,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mapbox/mapbox-gl-geocoder@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@mapbox/mapbox-gl-geocoder@npm:5.0.1"
+  dependencies:
+    "@mapbox/mapbox-sdk": ^0.13.3
+    events: ^3.3.0
+    lodash.debounce: ^4.0.6
+    nanoid: ^3.1.31
+    subtag: ^0.5.0
+    suggestions: ^1.6.0
+    xtend: ^4.0.1
+  peerDependencies:
+    mapbox-gl: ">= 0.47.0 < 3.0.0"
+  checksum: 60e226a84b3b8a3faa60ce1d4d4d8e4630fd302ca38fb1e96f081bd9d493db002d024e38b42ca185e3557c7ed36b6141bdb91b9ee08eaf18b58e544d92457b42
+  languageName: node
+  linkType: hard
+
 "@mapbox/mapbox-gl-supported@npm:^2.0.1":
   version: 2.0.1
   resolution: "@mapbox/mapbox-gl-supported@npm:2.0.1"
   checksum: 1dffc96baacc56e34b09f2ae6ac4b2b8f10ad51a9d7c4946dc2057f456deeacd5d0729e340120857b3204a14d9961266f3218d26e101d46e81717954f1c129af
+  languageName: node
+  linkType: hard
+
+"@mapbox/mapbox-sdk@npm:^0.13.3":
+  version: 0.13.7
+  resolution: "@mapbox/mapbox-sdk@npm:0.13.7"
+  dependencies:
+    "@mapbox/fusspot": ^0.4.0
+    "@mapbox/parse-mapbox-token": ^0.2.0
+    "@mapbox/polyline": ^1.0.0
+    eventemitter3: ^3.1.0
+    form-data: ^3.0.0
+    got: ^11.8.5
+    is-plain-obj: ^1.1.0
+    xtend: ^4.0.1
+  checksum: a34de3cfa0485ca52092ac18a2293bf5ed6898c603066f93708aac24dddf0a1d5afffb641aefb1082fc04a433368207312a173cd249af438eb0820a3b163fae3
   languageName: node
   linkType: hard
 
@@ -2957,6 +2990,16 @@ __metadata:
   dependencies:
     "@types/geojson": "*"
   checksum: b584222588a3e0fdd9fde3fe6563b7c7b5c274f892e3de00754fe18bca3fa2e2ba80c82cfdf00431fb6409bddc1567e7acd9553a41ce031bddb6992771072fc9
+  languageName: node
+  linkType: hard
+
+"@types/mapbox__mapbox-gl-geocoder@npm:^4.7.4":
+  version: 4.7.4
+  resolution: "@types/mapbox__mapbox-gl-geocoder@npm:4.7.4"
+  dependencies:
+    "@types/geojson": "*"
+    "@types/mapbox-gl": "*"
+  checksum: 8d883492cf74b1897a84953432985919a5570b6a2936c83b1405b4efe165ad53b88ff29657b4d510039e01de8d80275c4aba52458bbca1457a24a83f7504d2fc
   languageName: node
   linkType: hard
 
@@ -7985,7 +8028,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"events@npm:^3.0.0":
+"events@npm:^3.0.0, events@npm:^3.3.0":
   version: 3.3.0
   resolution: "events@npm:3.3.0"
   checksum: f6f487ad2198aa41d878fa31452f1a3c00958f46e9019286ff4787c84aac329332ab45c9cdc8c445928fc6d7ded294b9e005a7fce9426488518017831b272780
@@ -8646,6 +8689,13 @@ __metadata:
   version: 1.2.3
   resolution: "functions-have-names@npm:1.2.3"
   checksum: c3f1f5ba20f4e962efb71344ce0a40722163e85bee2101ce25f88214e78182d2d2476aa85ef37950c579eb6cf6ee811c17b3101bb84004bb75655f3e33f3fdb5
+  languageName: node
+  linkType: hard
+
+"fuzzy@npm:^0.1.1":
+  version: 0.1.3
+  resolution: "fuzzy@npm:0.1.3"
+  checksum: acc09c6173e12d5dc8ae51857551ddbe834befa9ebc6be6d5581d09117265d704809d80407d220fd0652f347a9975a4d106854cacc8bd031487a0ede86982f84
   languageName: node
   linkType: hard
 
@@ -11437,11 +11487,13 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": ^6.4.2
     "@fortawesome/react-fontawesome": ^0.2.0
     "@lit-labs/react": ^1.0.2
+    "@mapbox/mapbox-gl-geocoder": ^5.0.1
     "@mapbox/mapbox-sdk": ^0.15.3
     "@react-google-maps/api": ^2.18.1
     "@reduxjs/toolkit": ^1.7.1
     "@types/country-list": ^2.1.0
     "@types/leaflet": ^1.7.9
+    "@types/mapbox__mapbox-gl-geocoder": ^4.7.4
     "@types/mapbox__mapbox-sdk": ^0.13.5
     "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.11
@@ -11676,7 +11728,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.debounce@npm:^4.0.8":
+"lodash.debounce@npm:^4.0.6, lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
   checksum: a3f527d22c548f43ae31c861ada88b2637eb48ac6aa3eb56e82d44917971b8aa96fbb37aa60efea674dc4ee8c42074f90f7b1f772e9db375435f6c83a19b3bc6
@@ -12530,6 +12582,15 @@ __metadata:
   dependencies:
     node-gyp: latest
   checksum: ec609aeaf7e68b76592a3ba96b372aa7f5df5b056c1e37410b0f1deefbab5a57a922061e2c5b369bae9c7c6b5e6eecf4ad2dac8833a1a7d3a751e0a7c7f849ed
+  languageName: node
+  linkType: hard
+
+"nanoid@npm:^3.1.31":
+  version: 3.3.6
+  resolution: "nanoid@npm:3.3.6"
+  bin:
+    nanoid: bin/nanoid.cjs
+  checksum: 7d0eda657002738aa5206107bd0580aead6c95c460ef1bdd0b1a87a9c7ae6277ac2e9b945306aaa5b32c6dcb7feaf462d0f552e7f8b5718abfc6ead5c94a71b3
   languageName: node
   linkType: hard
 
@@ -17779,12 +17840,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"subtag@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "subtag@npm:0.5.0"
+  checksum: c0b2c3cdc9ceefb83f92332c9b09b4197b0b053ee08b255c494b6aa0884aee94c968285eb38893d342c96ea3eaabd2525bbc8bdfa274e77afcecd6056dabbb7a
+  languageName: node
+  linkType: hard
+
 "sugarss@npm:^2.0.0":
   version: 2.0.0
   resolution: "sugarss@npm:2.0.0"
   dependencies:
     postcss: ^7.0.2
   checksum: 777abf31671b67aafc5bb6dbca0853070ff9c129b7a52e90cfbe1a24ff069765e53b03767f85407386edf01c26fe2c2861aae2841f9a391751df891694137839
+  languageName: node
+  linkType: hard
+
+"suggestions@npm:^1.6.0":
+  version: 1.7.1
+  resolution: "suggestions@npm:1.7.1"
+  dependencies:
+    fuzzy: ^0.1.1
+    xtend: ^4.0.0
+  checksum: dea8b77052ef9874a9c9d01478c557296cfec41ddc6277c51f2537bb881026dad793c831cbe74928cb959a596021371f823a8bccebe3c851ca234f78a9449dea
   languageName: node
   linkType: hard
 
