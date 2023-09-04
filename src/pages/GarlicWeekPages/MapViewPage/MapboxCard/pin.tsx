@@ -15,7 +15,7 @@ const pinStyle = {
   stroke: 'none',
 };
 
-function Pin({ title = <></>, onMouseEnter = () => {}, onMouseLeave = () => {} }) {
+function Pin({ title = <></> }) {
   return (
     <div
     // onMouseOver={onMouseEnter}

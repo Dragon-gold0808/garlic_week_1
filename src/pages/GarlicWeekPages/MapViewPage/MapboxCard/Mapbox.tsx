@@ -13,8 +13,6 @@ import styled from 'styled-components';
 import { FONT_FAMILY, FONT_SIZE, FONT_WEIGHT } from '@app/styles/themes/constants';
 
 const { Title, Text, Link } = BaseTypography;
-// @ts-ignore
-// eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 import GeocoderControl from './GeocoderControl';
