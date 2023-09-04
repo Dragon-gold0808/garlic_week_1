@@ -1,12 +1,12 @@
 import React from 'react';
 import { SearchFilter } from '../SearchFilter/SearchFilter';
 import { SearchResults } from '../SearchResults/SearchResults';
-import { CategoryComponents } from '@app/components/header/components/HeaderSearch/HeaderSearch';
+import { CategoryEvents } from '@app/components/header/components/HeaderSearch/HeaderSearch';
 import { NotFound } from '@app/components/common/NotFound/NotFound';
 import * as S from './SearchOverlay.styles';
 
 interface SearchOverlayProps {
-  data: CategoryComponents[] | null;
+  data: CategoryEvents[] | null;
   isFilterOpen: boolean;
 }
 

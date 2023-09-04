@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { HashLink } from 'react-router-hash-link';
 import { useTranslation } from 'react-i18next';
-import { CategoryComponents } from '@app/components/header/components/HeaderSearch/HeaderSearch';
+import { CategoryEvents } from '@app/components/header/components/HeaderSearch/HeaderSearch';
 import { camelize } from '@app/utils/utils';
 import * as S from './SearchResults.styles';
 import { BaseList } from '@app/components/common/BaseList/BaseList';
 
 interface SearchResultsProps {
-  results: CategoryComponents[];
+  results: CategoryEvents[];
 }
 
 export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
@@ -19,18 +19,16 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
         <BaseList
           key={result.category}
           split={false}
-          header={t(`common.${camelize(result.category)}`)}
-          dataSource={result.components}
+          header={result.category}
+          dataSource={result.events}
           renderItem={(item) => (
-            <HashLink to={item.url}>
-              <BaseList.Item>
-                <S.Text>{item.name}</S.Text>
-              </BaseList.Item>
-            </HashLink>
+            <BaseList.Item>
+              <S.Text>{item.businessName}</S.Text>
+            </BaseList.Item>
           )}
         />
       )),
-    [results, t],
+    [results],
   );
 
   return <S.SearchResultsWrapper>{resultsList}</S.SearchResultsWrapper>;

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { BaseTooltip } from '@app/components/common/BaseTooltip/BaseTooltip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStore } from '@fortawesome/free-solid-svg-icons';
+import { faStore, faUtensils, faWheatAlt, faCartShopping, faPersonChalkboard } from '@fortawesome/free-solid-svg-icons';
 import { BasePopover } from '@app/components/common/BasePopover/BasePopover';
 
 const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
@@ -15,7 +15,33 @@ const pinStyle = {
   stroke: 'none',
 };
 
-function Pin({ title = <></> }) {
+function Pin({ title = <></>, category = '' }) {
+  let pic = 'pin2';
+  let picon = faStore;
+  switch (category) {
+    case 'Farm':
+      picon = faStore;
+      pic = 'pin2';
+      break;
+    case 'Restaurant':
+      picon = faUtensils;
+      pic = 'pin3';
+      break;
+    case "Farmer's Market":
+      picon = faWheatAlt;
+      pic = 'pin4';
+      break;
+    case 'Independent Grocer':
+      picon = faCartShopping;
+      pic = 'pin5';
+      break;
+    case 'Special Activity':
+      picon = faPersonChalkboard;
+      pic = 'pin6';
+      break;
+    default:
+      break;
+  }
   return (
     <div
     // onMouseOver={onMouseEnter}
@@ -24,9 +50,9 @@ function Pin({ title = <></> }) {
       {/* <svg height={size} viewBox="0 0 24 24" style={pinStyle}> */}
       <BaseTooltip title={title} style={pinStyle}>
         {/* <BasePopover placement="bottom" title={title} content="d" trigger="click"> */}
-        <img src="/pin2.png" width="35px" height="auto" />
+        <img src={'/' + pic + '.png'} width="35px" height="auto" />
         <FontAwesomeIcon
-          icon={faStore}
+          icon={picon}
           size="xl"
           style={{ color: '#ffffff', position: 'absolute', top: '53%', left: '50%', transform: 'translate(-50%)' }}
         />

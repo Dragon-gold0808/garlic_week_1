@@ -1,33 +1,36 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { categoriesList, CategoryType } from 'constants/categoriesList';
-import { CategoryComponents } from '@app/components/header/components/HeaderSearch/HeaderSearch';
+import { CategoryEvents } from '@app/components/header/components/HeaderSearch/HeaderSearch';
 import * as S from './SearchFilter.styles';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
+import { useDispatch } from 'react-redux';
+import { changeFilter } from '@app/store/slices/filterSlice';
 
 interface SearchFilterProps {
-  data: CategoryComponents[] | null;
+  data: CategoryEvents[] | null;
   isOpen: boolean;
-  children: (filteredResults: CategoryComponents[]) => React.ReactNode;
+  children: (filteredResults: CategoryEvents[]) => React.ReactNode;
 }
 
 export const SearchFilter: React.FC<SearchFilterProps> = ({ data, isOpen, children }) => {
+  const dispatch = useDispatch();
   const [selectedFilter, setSelectedFilter] = useState<CategoryType[]>([]);
-  const [filteredResults, setFilteredResults] = useState<CategoryComponents[] | null>(data);
+  const [filteredResults, setFilteredResults] = useState<CategoryEvents[] | null>(data);
 
   const { t } = useTranslation();
 
   const filterElements = useMemo(
     () =>
       categoriesList.map((filter, index) => (
-        <BaseCol key={index} xs={12} sm={8} md={12} xl={8}>
+        <BaseCol key={index} xs={12} sm={12} md={12} xl={12}>
           <S.CheckBox key={index} value={filter.name}>
-            {t(filter.title)}
+            {filter.title}
           </S.CheckBox>
         </BaseCol>
       )),
-    [t],
+    [],
   );
 
   useEffect(() => {
@@ -40,12 +43,17 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({ data, isOpen, childr
     } else {
       setFilteredResults(null);
     }
-  }, [data, selectedFilter]);
+    dispatch(changeFilter(selectedFilter));
+  }, [data, selectedFilter, dispatch]);
 
   return (
     <>
       <S.FilterWrapper isOpen={isOpen}>
-        <S.CheckboxGroup onChange={(checkedValues) => setSelectedFilter(checkedValues as CategoryType[])}>
+        <S.CheckboxGroup
+          onChange={(checkedValues) => {
+            setSelectedFilter(checkedValues as CategoryType[]);
+          }}
+        >
           <BaseRow>{filterElements}</BaseRow>
         </S.CheckboxGroup>
       </S.FilterWrapper>

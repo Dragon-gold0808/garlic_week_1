@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FilterIcon } from 'components/common/icons/FilterIcon';
 import { SearchOverlay } from './searchOverlay/SearchOverlay/SearchOverlay';
 import { HeaderActionWrapper } from '@app/components/header/Header.styles';
-import { CategoryComponents } from '@app/components/header/components/HeaderSearch/HeaderSearch';
+import { CategoryEvents } from '@app/components/header/components/HeaderSearch/HeaderSearch';
 import { Btn, InputSearch } from '../HeaderSearch/HeaderSearch.styles';
 import { useTranslation } from 'react-i18next';
 import { BasePopover } from '@app/components/common/BasePopover/BasePopover';
@@ -10,7 +10,7 @@ import { BasePopover } from '@app/components/common/BasePopover/BasePopover';
 interface SearchOverlayProps {
   query: string;
   setQuery: (query: string) => void;
-  data: CategoryComponents[] | null;
+  data: CategoryEvents[] | null;
   isOverlayOpen: boolean;
   setOverlayOpen: (state: boolean) => void;
 }

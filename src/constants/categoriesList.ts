@@ -1,33 +1,39 @@
-export type CategoryType = 'apps' | 'forms' | 'charts' | 'auth' | 'data tables' | 'maps';
+export type CategoryType =
+  | 'Farm'
+  | "Farmer's Market"
+  | 'Restaurant'
+  | 'Special Activity'
+  | 'Community Organization'
+  | 'Independent Grocer';
 
-interface Category {
+export interface Category {
   name: CategoryType;
   title: string;
 }
 
 export const categoriesList: Category[] = [
   {
-    name: 'apps',
-    title: 'common.apps',
+    name: 'Farm',
+    title: 'Farm',
   },
   {
-    name: 'auth',
-    title: 'common.auth',
+    name: "Farmer's Market",
+    title: "Farmer's Market",
   },
   {
-    name: 'forms',
-    title: 'common.forms',
+    name: 'Restaurant',
+    title: 'Restaurant',
   },
   {
-    name: 'data tables',
-    title: 'common.dataTables',
+    name: 'Special Activity',
+    title: 'Special Activity',
   },
   {
-    name: 'charts',
-    title: 'common.charts',
+    name: 'Community Organization',
+    title: 'Community Organization',
   },
   {
-    name: 'maps',
-    title: 'common.maps',
+    name: 'Independent Grocer',
+    title: 'Independent Grocer',
   },
 ];

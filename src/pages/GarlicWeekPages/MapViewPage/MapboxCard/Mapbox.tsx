@@ -34,6 +34,7 @@ interface PopupInfo {
 
 export default function Mapbox() {
   const theme = useAppSelector((state) => state.theme.theme);
+  const filter: Array<string> = useAppSelector((state) => state.filter.filter.category);
   console.log(theme);
   const [events, setEvents] = useState<GarlicEvents[]>();
   const [data, setData] = useState<GarlicEvents[]>([]);
@@ -50,6 +51,11 @@ export default function Mapbox() {
       .then((res) => setEvents(res))
       .finally(() => setLoaded(true));
   }, []);
+
+  // useEffect(() => {
+  //   const filteredEvents = events?.filter((event) => filter.includes(event.category));
+  //   setEvents(filteredEvents);
+  // }, [filter]);
 
   console.log(events);
   // useEffect(() => {
@@ -107,6 +113,7 @@ export default function Mapbox() {
                 {city.address}
               </Space>
             }
+            category={city.category}
             // onMouseEnter={() => {
             //   // If we let the click event propagates to the map, it will immediately close the popup
             //   // with `closeOnClick: true`

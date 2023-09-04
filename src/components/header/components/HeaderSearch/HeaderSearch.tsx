@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { SearchDropdown } from '../searchDropdown/SearchDropdown';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { components as configComponents, Component } from '@app/constants/config/components';
 import { categoriesList, CategoryType } from '@app/constants/categoriesList';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './HeaderSearch.styles';
+import { getEvents, GarlicEvents } from '@app/api/events.api';
 
-export interface CategoryComponents {
+export interface CategoryEvents {
   category: CategoryType;
-  components: Component[];
+  events: GarlicEvents[];
 }
 
 export const HeaderSearch: React.FC = () => {
@@ -18,21 +18,26 @@ export const HeaderSearch: React.FC = () => {
   const { pathname } = useLocation();
 
   const [query, setQuery] = useState('');
-  const [components] = useState<Component[]>(configComponents);
+  const [events, setEvents] = useState<GarlicEvents[]>([]);
+  const [loaded, setLoaded] = useState<boolean>(false);
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isOverlayOpen, setOverlayOpen] = useState(false);
 
+  useEffect(() => {
+    getEvents()
+      .then((res) => setEvents(res))
+      .finally(() => setLoaded(true));
+  }, []);
+
   const sortedResults = query
     ? categoriesList.reduce((acc, current) => {
-        const searchResults = components.filter(
-          (component) =>
-            component.categories.includes(current.name) &&
-            component.keywords.some((keyword) => keyword.includes(query)),
+        const searchResults = events.filter(
+          (event) => event.category === current.name && event.businessName.toLowerCase().includes(query.toLowerCase()),
         );
 
-        return searchResults.length > 0 ? acc.concat({ category: current.name, components: searchResults }) : acc;
-      }, [] as CategoryComponents[])
+        return searchResults.length > 0 ? acc.concat({ category: current.name, events: searchResults }) : acc;
+      }, [] as CategoryEvents[])
     : null;
 
   useEffect(() => {
