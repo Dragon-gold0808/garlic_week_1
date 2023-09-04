@@ -6,6 +6,9 @@ import { SettingsDropdown } from '../components/settingsDropdown/SettingsDropdow
 import * as S from '../Header.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import { MapViewButton } from '../components/MapViewButton';
+import { ListViewButton } from '../components/ListViewButton';
+import { CalendarViewButton } from '../components/CalendarViewButton';
 
 interface MobileHeaderProps {
   toggleSider: () => void;
@@ -16,27 +19,26 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
   return (
     <BaseRow justify="space-between" align="middle">
       <BaseCol>
-        <ProfileDropdown />
+        <HeaderSearch />
       </BaseCol>
 
       <BaseCol>
         <BaseRow align="middle">
           <BaseCol>
-            <NotificationsDropdown />
+            <ListViewButton />
           </BaseCol>
-
           <BaseCol>
-            <HeaderSearch />
+            <MapViewButton />
           </BaseCol>
-
           <BaseCol>
-            <SettingsDropdown />
+            <CalendarViewButton />
           </BaseCol>
         </BaseRow>
       </BaseCol>
-
       <S.BurgerCol>
-        <S.MobileBurger onClick={toggleSider} isCross={isSiderOpened} />
+        <BaseCol>
+          <SettingsDropdown />
+        </BaseCol>
       </S.BurgerCol>
     </BaseRow>
   );
