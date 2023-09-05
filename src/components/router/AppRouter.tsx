@@ -17,6 +17,7 @@ import { withLoading } from '@app/hocs/withLoading.hoc';
 import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
 import MapViewPage from '@app/pages/GarlicWeekPages/MapViewPage/MapViewPage';
+import ListViewPage from '@app/pages/GarlicWeekPages/ListViewPage/ListViewPage';
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -61,11 +62,12 @@ const ReactSimpleMaps = React.lazy(() => import('@app/pages/maps/ReactSimpleMaps
 const PigeonsMaps = React.lazy(() => import('@app/pages/maps/PigeonsMapsPage/PigeonsMapsPage'));
 const Logout = React.lazy(() => import('./Logout'));
 
-export const NFT_DASHBOARD_PATH = '/';
+export const NFT_DASHBOARD_PATH = '/nft-dashboard';
 export const MEDICAL_DASHBOARD_PATH = '/medical-dashboard';
 
 const MedicalDashboard = withLoading(MedicalDashboardPage);
 const MapView = withLoading(MapViewPage);
+const ListView = withLoading(ListViewPage);
 const NftDashboard = withLoading(NftDashboardPage);
 const NewsFeed = withLoading(NewsFeedPage);
 const AdvancedForm = withLoading(AdvancedFormsPage);
@@ -130,11 +132,13 @@ export const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
+        <Route path="/" element={protectedLayout}>
           <Route path="/" element={<Navigate to="/garlic-week/mapview" />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
+          <Route path={NFT_DASHBOARD_PATH} element={<NftDashboard />} />
           <Route path="garlic-week">
             <Route path="mapview" element={<MapView />} />
+            <Route path="listview" element={<ListView />} />
           </Route>
           <Route path="apps">
             <Route path="feed" element={<NewsFeed />} />

@@ -25,7 +25,7 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     title: 'common.nft-dashboard',
     key: 'nft-dashboard',
     // TODO use path variable
-    url: '/',
+    url: '/nft-dashboard',
     icon: <NftIcon />,
   },
   {
@@ -43,6 +43,11 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
         title: 'MapView',
         key: 'map-view',
         url: '/garlic-week/mapview',
+      },
+      {
+        title: 'ListView',
+        key: 'list-view',
+        url: '/garlic-week/listview',
       },
     ],
   },

@@ -103,30 +103,27 @@ export default function Mapbox() {
             setPopupInfo(city);
           }}
         >
-          <Pin
-            title={
-              <Space direction="vertical" style={{ color: '#f8fbff' }}>
-                <Title level={5} style={{ textAlign: 'center', color: 'inherit' }}>
-                  {city.businessName}
-                </Title>
-                {garlickyFeature(city)}
-                {city.address}
-              </Space>
-            }
-            category={city.category}
-            // onMouseEnter={() => {
-            //   // If we let the click event propagates to the map, it will immediately close the popup
-            //   // with `closeOnClick: true`
-            //   // e.originalEvent.stopPropagation();
-            //   setPopupInfo(city);
-            // }}
-            // onMouseLeave={() => setPopupInfo(null)}
-          />
+          {popupInfo === null ? (
+            <Pin
+              title={
+                <Space direction="vertical" style={{ color: '#f8fbff' }}>
+                  <Title level={5} style={{ textAlign: 'center', color: 'inherit' }}>
+                    {city.businessName}
+                  </Title>
+                  {garlickyFeature(city)}
+                  {city.address}
+                </Space>
+              }
+              category={city.category}
+            />
+          ) : (
+            <Pin title={<></>} category={city.category} />
+          )}
         </Marker>
       )),
-    [events],
+    [events, popupInfo],
   );
-
+  console.log(popupInfo);
   const website = (data = '', type = '') =>
     data && data !== 'none' && data != 'N/A' ? (
       <Text>
