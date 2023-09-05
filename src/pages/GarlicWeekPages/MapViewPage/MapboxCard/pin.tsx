@@ -45,12 +45,7 @@ function Pin({ title = <></>, category = '' }) {
     <div style={pinStyle}>
       {/* <svg height={size} viewBox="0 0 24 24" style={pinStyle}> */}
       <BaseTooltip title={title} style={pinStyle}>
-        <img src={'/' + pic + '.png'} width="35px" height="auto" />
-        <FontAwesomeIcon
-          icon={picon}
-          size="xl"
-          style={{ color: '#ffffff', position: 'absolute', top: '53%', left: '50%', transform: 'translate(-50%)' }}
-        />
+        <img src={'/' + pic + '.png'} width="45px" height="auto" />
       </BaseTooltip>
     </div>
   );
