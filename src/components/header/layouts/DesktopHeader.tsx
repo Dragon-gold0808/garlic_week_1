@@ -39,9 +39,6 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
           <img src="/logo-dark.png" style={{ height: '70px' }} />
         )}
       </BaseCol>
-      <BaseCol lg={7} xxl={7} xl={7}>
-        <HeaderSearch />
-      </BaseCol>
       {/* </BaseRow> */}
     </>
   );

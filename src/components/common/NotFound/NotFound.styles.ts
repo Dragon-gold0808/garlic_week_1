@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { BaseTypography } from '../BaseTypography/BaseTypography';
 
 export const NotFoundWrapper = styled.div`
+  height: 70vh;
   display: flex;
   align-items: center;
   flex-direction: column;

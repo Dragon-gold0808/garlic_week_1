@@ -26,7 +26,7 @@ function Pin({ title = <></>, category = '' }) {
       picon = faUtensils;
       pic = 'pin3';
       break;
-    case "Farmer's Market":
+    case "Farmers' Market":
       picon = faWheatAlt;
       pic = 'pin4';
       break;

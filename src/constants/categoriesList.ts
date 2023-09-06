@@ -1,6 +1,6 @@
 export type CategoryType =
   | 'Farm'
-  | "Farmer's Market"
+  | "Farmers' Market"
   | 'Restaurant'
   | 'Special Activity'
   | 'Community Organization'
@@ -17,8 +17,8 @@ export const categoriesList: Category[] = [
     title: 'Farm',
   },
   {
-    name: "Farmer's Market",
-    title: "Farmer's Market",
+    name: "Farmers' Market",
+    title: "Farmers' Market",
   },
   {
     name: 'Restaurant',

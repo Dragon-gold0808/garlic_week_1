@@ -54,11 +54,11 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
       </Text>
     ) : null;
 
-  const garlickyFeature = (detailModal = { garlickyFeature: '' }) =>
-    detailModal?.garlickyFeature ? (
+  const garlickyFeature = (garlickyFeature: string | undefined) =>
+    garlickyFeature ? (
       <Text style={{ color: 'inherit' }}>
         <span style={{ fontWeight: 'bold' }}>Garlicky Feature: </span>
-        {detailModal.garlickyFeature}
+        {garlickyFeature}
       </Text>
     ) : null;
 
@@ -67,7 +67,7 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
       <Title level={5} style={{ textAlign: 'center' }}>
         {detailModal.businessName}
       </Title>
-      {garlickyFeature(detailModal)}
+      {garlickyFeature(detailModal.garlickyFeature)}
       {detailModal.details}
       {detailModal.date}
       {detailModal.address}

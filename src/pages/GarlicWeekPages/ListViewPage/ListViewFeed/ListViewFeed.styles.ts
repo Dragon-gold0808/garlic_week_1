@@ -3,5 +3,5 @@ import styled from 'styled-components';
 export const FeedWrapper = styled.div`
   overflow-y: auto;
 
-  max-height: 70vh;
+  height: 70vh;
 `;

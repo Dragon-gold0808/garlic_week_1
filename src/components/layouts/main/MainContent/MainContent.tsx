@@ -11,7 +11,7 @@ export default styled(BaseLayout.Content)<HeaderProps>`
   overflow: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
 
   @media only screen and ${media.md} {
     padding: ${LAYOUT.desktop.paddingVertical} ${LAYOUT.desktop.paddingHorizontal};

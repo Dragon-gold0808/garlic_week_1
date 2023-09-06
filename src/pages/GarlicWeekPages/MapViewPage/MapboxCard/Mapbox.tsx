@@ -52,11 +52,11 @@ export default function Mapbox() {
   console.log(geocodingClient);
   const events: GarlicEvents[] = useAppSelector((state) => state.filter.filteredEvents);
   console.log(events);
-  const garlickyFeature = (popupInfo = { garlickyFeature: '' }) =>
-    popupInfo?.garlickyFeature ? (
+  const garlickyFeature = (garlickyFeature: string | undefined) =>
+    garlickyFeature ? (
       <Text style={{ color: 'inherit', fontSize: '13px' }}>
         <span style={{ fontWeight: 'bold' }}>Garlicky Feature: </span>
-        {popupInfo.garlickyFeature}
+        {garlickyFeature}
       </Text>
     ) : null;
 
@@ -88,7 +88,7 @@ export default function Mapbox() {
                   <Title level={5} style={{ textAlign: 'center', color: 'inherit' }}>
                     {city.businessName}
                   </Title>
-                  {garlickyFeature(city)}
+                  {garlickyFeature(city.garlickyFeature)}
                   {city.address}
                 </Space>
               }
@@ -154,7 +154,7 @@ export default function Mapbox() {
               <Title level={5} style={{ textAlign: 'center' }}>
                 {popupInfo.businessName}
               </Title>
-              {garlickyFeature(popupInfo)}
+              {garlickyFeature(popupInfo.garlickyFeature)}
               {popupInfo.details}
               {popupInfo.date}
               {popupInfo.address}

@@ -63,7 +63,9 @@ const MainLayout: React.FC = () => {
 
   useEffect(() => {
     if (filters.category.length > 0) {
-      setFirstFilteredActivity(activity.filter((item) => filters.category.some((filter) => filter === item.category)));
+      setFirstFilteredActivity(
+        activity.filter((item) => filters.category.some((filter) => item.category.includes(filter))),
+      );
     } else setFirstFilteredActivity(activity);
   }, [filters.category, activity]);
 
