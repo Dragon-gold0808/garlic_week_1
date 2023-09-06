@@ -27,6 +27,6 @@ export const Text = styled(BaseTypography.Text)`
   color: var(--text-main-color);
 
   &:hover {
-    text-decoration: underline;
+    cursor: pointer;
   }
 `;

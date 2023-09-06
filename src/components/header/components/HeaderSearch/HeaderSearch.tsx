@@ -5,7 +5,8 @@ import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { categoriesList, CategoryType } from '@app/constants/categoriesList';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './HeaderSearch.styles';
-import { getEvents, GarlicEvents } from '@app/api/events.api';
+import { GarlicEvents } from '@app/api/events.api';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
 export interface CategoryEvents {
   category: CategoryType;
@@ -18,17 +19,12 @@ export const HeaderSearch: React.FC = () => {
   const { pathname } = useLocation();
 
   const [query, setQuery] = useState('');
-  const [events, setEvents] = useState<GarlicEvents[]>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isOverlayOpen, setOverlayOpen] = useState(false);
-
-  useEffect(() => {
-    getEvents()
-      .then((res) => setEvents(res))
-      .finally(() => setLoaded(true));
-  }, []);
+  const events: GarlicEvents[] = useAppSelector((state) => state.filter.filteredEvents);
+  const selectedItem: GarlicEvents = useAppSelector((state) => state.filter.item);
 
   const sortedResults = query
     ? categoriesList.reduce((acc, current) => {

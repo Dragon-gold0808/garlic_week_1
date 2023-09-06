@@ -7,6 +7,8 @@ interface CardInternalProps {
 
 export const Card = styled(BaseCard)<CardInternalProps>`
   box-shadow: var(--box-shadow-nft-color);
+  max-height: 70vh;
+  overflow-y: auto;
 
   ${(props) =>
     props.$isSider &&

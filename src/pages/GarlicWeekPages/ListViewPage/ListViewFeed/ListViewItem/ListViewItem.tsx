@@ -6,16 +6,13 @@ import { GarlicEvents } from '@app/api/events.api';
 import * as S from './ListViewItem.styles';
 import { categoriesList } from '@app/constants/categoriesList';
 
-// interface ListViewItemProps {
-//   activity: GarlicEvents;
-//   key: number;
-//   onClick?: React.MouseEventHandler<HTMLDivElement> | undefined;
-// }
+interface ListViewItemProps {
+  key: number;
+  activity: GarlicEvents;
+  onClick: (e: any) => void;
+}
 
-export const ListViewItem: React.FC<GarlicEvents> = (
-  activity,
-  onClick: () => React.MouseEventHandler<HTMLDivElement> | undefined,
-) => {
+export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick }) => {
   const { t } = useTranslation();
 
   const currentActivity = useMemo(
@@ -30,7 +27,7 @@ export const ListViewItem: React.FC<GarlicEvents> = (
   ) : null;
 
   return (
-    <S.ActivityCard>
+    <S.ActivityCard onClick={onClick} style={{ cursor: 'pointer' }}>
       <S.Wrapper>
         {/* <S.ImgWrapper>
           <img src={image} alt={title} width={84} height={84} />

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { BaseCard } from '@app/components/common/BaseCard/BaseCard';
 
 export const MapsCard = styled(BaseCard)`
-  height: 80vh;
+  height: 70vh;
   // width: 80vh;
   overflow-y: auto;
 

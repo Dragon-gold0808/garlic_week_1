@@ -8,53 +8,46 @@ import { getEvents, GarlicEvents } from '@app/api/events.api';
 import * as S from './ListView.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
 export interface ListViewFilterState {
   category: string[];
+  city: string[];
 }
 
 const ListViewPage: React.FC = () => {
-  const [activity, setActivity] = useState<GarlicEvents[]>([]);
-  const [filteredActivity, setFilteredActivity] = useState<GarlicEvents[]>([]);
-  const [hasMore] = useState(true);
+  // const [activity, setActivity] = useState<GarlicEvents[]>([]);
+  // const [filteredActivity, setFilteredActivity] = useState<GarlicEvents[]>([]);
+  const [hasMore] = useState(false);
 
-  const [filters, setFilters] = useState<ListViewFilterState>({
-    category: [],
-  });
+  // const [filters, setFilters] = useState<ListViewFilterState>({
+  //   category: [],
+  // });
 
   const { isDesktop } = useResponsive();
+  const filteredActivity = useAppSelector((state) => state.filter.filteredEvents);
 
-  useEffect(() => {
-    getEvents().then((res) => setActivity(res));
-  }, []);
+  // useEffect(() => {
+  //   getEvents().then((res) => setActivity(res));
+  // }, []);
 
   const next = () => {
-    getEvents().then((newActivity) => setActivity(activity.concat(newActivity)));
+    console.log('next selected');
   };
 
-  useEffect(() => {
-    if (filters.category.length > 0) {
-      setFilteredActivity(activity.filter((item) => filters.category.some((filter) => filter === item.category)));
-    } else {
-      setFilteredActivity(activity);
-    }
-  }, [filters.category, activity]);
+  // useEffect(() => {
+  //   if (filters.category.length > 0) {
+  //     setFilteredActivity(activity.filter((item) => filters.category.some((filter) => filter === item.category)));
+  //   } else {
+  //     setFilteredActivity(activity);
+  //   }
+  // }, [filters.category, activity]);
 
   return (
     <BaseRow gutter={[30, 0]}>
-      <BaseCol span={24}>
-        <ListViewHeader filters={filters} setFilters={setFilters} />
-      </BaseCol>
-
-      <BaseCol xs={24} sm={24} md={24} xl={16}>
+      <BaseCol xs={24} sm={24} md={24} xl={24}>
         <ListViewFeed activity={filteredActivity} hasMore={hasMore} next={next} />
       </BaseCol>
-
-      {isDesktop && (
-        <S.FilterCol span={8}>
-          <ListViewFilter filters={filters} setFilters={setFilters} withWrapper />
-        </S.FilterCol>
-      )}
     </BaseRow>
   );
 };

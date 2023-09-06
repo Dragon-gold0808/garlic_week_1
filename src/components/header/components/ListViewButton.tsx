@@ -9,13 +9,10 @@ import { HeaderActionWrapper } from '../Header.styles';
 export const ListViewButton: React.FC = () => {
   const location = useLocation();
   return (
-    <Link to="/garlic-week/listview">
+    <Link to="/">
       <HeaderActionWrapper>
         <BaseTooltip title="List View">
-          <BaseButton
-            type={location.pathname === '/garlic-week/listview' ? 'ghost' : 'text'}
-            icon={<UnorderedListOutlined />}
-          />
+          <BaseButton type={location.pathname === '/' ? 'ghost' : 'text'} icon={<UnorderedListOutlined />} />
         </BaseTooltip>
       </HeaderActionWrapper>
     </Link>

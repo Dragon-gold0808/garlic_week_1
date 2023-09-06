@@ -5,12 +5,15 @@ import { CategoryEvents } from '@app/components/header/components/HeaderSearch/H
 import { camelize } from '@app/utils/utils';
 import * as S from './SearchResults.styles';
 import { BaseList } from '@app/components/common/BaseList/BaseList';
+import { setSearchedItem } from '@app/store/slices/filterSlice';
+import { useDispatch } from 'react-redux';
 
 interface SearchResultsProps {
   results: CategoryEvents[];
 }
 
 export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const resultsList = useMemo(
@@ -23,7 +26,13 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
           dataSource={result.events}
           renderItem={(item) => (
             <BaseList.Item>
-              <S.Text>{item.businessName}</S.Text>
+              <S.Text
+                onClick={() => {
+                  dispatch(setSearchedItem(item));
+                }}
+              >
+                {item.businessName}
+              </S.Text>
             </BaseList.Item>
           )}
         />

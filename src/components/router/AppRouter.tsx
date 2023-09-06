@@ -133,13 +133,10 @@ export const AppRouter: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={protectedLayout}>
-          <Route path="/" element={<Navigate to="/garlic-week/listview" />} />
+          <Route index element={<ListView />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
           <Route path={NFT_DASHBOARD_PATH} element={<NftDashboard />} />
-          <Route path="garlic-week">
-            <Route path="mapview" element={<MapView />} />
-            <Route path="listview" element={<ListView />} />
-          </Route>
+          <Route path="mapview" element={<MapView />} />
         </Route>
         <Route path="/auth" element={<AuthLayoutFallback />}>
           <Route path="login" element={<LoginPage />} />

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { FilterIcon } from '@app/components/common/icons/FilterIcon';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
@@ -16,17 +15,17 @@ interface ListViewHeaderProps {
 export const ListViewHeader: React.FC<ListViewHeaderProps> = ({ filters, setFilters }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const { isDesktop } = useResponsive();
+  const { mobileOnly } = useResponsive();
 
   return (
     <>
-      <NFTCardHeader title={'List View'}>
-        {!isDesktop && (
+      <NFTCardHeader title={'Garlic Week'}>
+        {mobileOnly && (
           <BaseButton size="large" noStyle type="text" icon={<FilterIcon />} onClick={() => setModalOpen(true)} />
         )}
       </NFTCardHeader>
 
-      {!isDesktop && (
+      {mobileOnly && (
         <BaseModal open={isModalOpen} onCancel={() => setModalOpen(false)} footer={null}>
           <ListViewFilter filters={filters} setFilters={setFilters} />
         </BaseModal>

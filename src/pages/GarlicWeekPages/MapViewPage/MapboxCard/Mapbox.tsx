@@ -11,6 +11,8 @@ import { Space } from 'antd';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
 import { FONT_FAMILY, FONT_SIZE, FONT_WEIGHT } from '@app/styles/themes/constants';
+import { setSearchedItem } from '@app/store/slices/filterSlice';
+import { useDispatch } from 'react-redux';
 
 const { Title, Text, Link } = BaseTypography;
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
@@ -33,52 +35,23 @@ interface PopupInfo {
 }
 
 export default function Mapbox() {
+  const dispatch = useDispatch();
   const theme = useAppSelector((state) => state.theme.theme);
   const filter: Array<string> = useAppSelector((state) => state.filter.filter.category);
   console.log(theme);
-  const [events, setEvents] = useState<GarlicEvents[]>();
+  // const [events, setEvents] = useState<GarlicEvents[]>();
   const [data, setData] = useState<GarlicEvents[]>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
   const [popupInfo, setPopupInfo] = useState<GarlicEvents | null>(null);
+  const selectedItem: GarlicEvents = useAppSelector((state) => state.filter.item);
   mapboxgl.accessToken = TOKEN ? TOKEN : '';
   const baseClient = new MapboxClient({
     accessToken: TOKEN ? TOKEN : '',
   });
   const geocodingClient = GeocodingService(baseClient);
   console.log(geocodingClient);
-  useEffect(() => {
-    getEvents()
-      .then((res) => setEvents(res))
-      .finally(() => setLoaded(true));
-  }, []);
-
-  // useEffect(() => {
-  //   const filteredEvents = events?.filter((event) => filter.includes(event.category));
-  //   setEvents(filteredEvents);
-  // }, [filter]);
-
+  const events: GarlicEvents[] = useAppSelector((state) => state.filter.filteredEvents);
   console.log(events);
-  // useEffect(() => {
-  //   // const addresses = ['New York, NY', 'San Francisco, CA', 'London, UK'];
-  //   if (events)
-  //     events.map((event) => {
-  //       const forwardGeocodeRequest: GeocodeRequest = {
-  //         query: event.address,
-  //         limit: 1,
-  //       };
-  //       geocodingClient
-  //         .forwardGeocode(forwardGeocodeRequest)
-  //         .send()
-  //         .then((response) => {
-  //           const results = response.body.features[0].center;
-  //           setData((data) => [...data, { ...event, coordinate: results }]);
-  //           console.log(results);
-  //         })
-  //         .catch((error) => {
-  //           console.error(error);
-  //         });
-  //     });
-  // }, [events, geocodingClient]);
   const garlickyFeature = (popupInfo = { garlickyFeature: '' }) =>
     popupInfo?.garlickyFeature ? (
       <Text style={{ color: 'inherit', fontSize: '13px' }}>
@@ -87,7 +60,12 @@ export default function Mapbox() {
       </Text>
     ) : null;
 
-  console.log(data);
+  useEffect(() => {
+    if (selectedItem._id) setPopupInfo(selectedItem);
+    // if (selectedItem.businessName) setOverlayOpen(false);
+  }, [selectedItem, setPopupInfo]);
+
+  // console.log(data);
   const pins = useMemo(
     () =>
       events?.map((city, index) => (
@@ -150,6 +128,7 @@ export default function Mapbox() {
         // mapStyle="mapbox://styles/mapbox/streets-v9"
         // mapStyle="mapbox://styles/mapbox/dark-v9"
         mapboxAccessToken={TOKEN}
+        attributionControl={false}
       >
         <GeocoderControl mapboxAccessToken={TOKEN ? TOKEN : ''} position="top-left" placeholder="Type where to go..." />
         <GeolocateControl position="top-left" />
@@ -164,7 +143,10 @@ export default function Mapbox() {
             anchor="top"
             longitude={Number(popupInfo.coordinate ? popupInfo.coordinate[0] : 0)}
             latitude={Number(popupInfo.coordinate ? popupInfo.coordinate[1] : 0)}
-            onClose={() => setPopupInfo(null)}
+            onClose={() => {
+              setPopupInfo(null);
+              dispatch(setSearchedItem({}));
+            }}
             maxWidth="400px"
             style={{ fontFamily: FONT_FAMILY.main }}
           >
@@ -214,6 +196,13 @@ export default function Mapbox() {
             /> */}
           </Popup>
         )}
+        <style>
+          {`
+            .mapboxgl-ctrl-logo {
+                display: none !important;
+            },
+              `}
+        </style>
       </Map>
 
       {/* <ControlPanel /> */}

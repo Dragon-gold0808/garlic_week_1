@@ -8,7 +8,7 @@ export const LayoutMaster = styled(BaseLayout)`
 
 export const LayoutMain = styled(BaseLayout)`
   @media only screen and ${media.md} {
-    margin-left: 80px;
+    margin-left: unset;
   }
 
   @media only screen and ${media.xl} {

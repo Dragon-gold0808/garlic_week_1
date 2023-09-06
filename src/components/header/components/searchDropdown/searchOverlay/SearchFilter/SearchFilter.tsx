@@ -5,8 +5,6 @@ import { CategoryEvents } from '@app/components/header/components/HeaderSearch/H
 import * as S from './SearchFilter.styles';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
-import { useDispatch } from 'react-redux';
-import { changeFilter } from '@app/store/slices/filterSlice';
 
 interface SearchFilterProps {
   data: CategoryEvents[] | null;
@@ -15,7 +13,6 @@ interface SearchFilterProps {
 }
 
 export const SearchFilter: React.FC<SearchFilterProps> = ({ data, isOpen, children }) => {
-  const dispatch = useDispatch();
   const [selectedFilter, setSelectedFilter] = useState<CategoryType[]>([]);
   const [filteredResults, setFilteredResults] = useState<CategoryEvents[] | null>(data);
 
@@ -43,8 +40,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({ data, isOpen, childr
     } else {
       setFilteredResults(null);
     }
-    dispatch(changeFilter(selectedFilter));
-  }, [data, selectedFilter, dispatch]);
+  }, [data, selectedFilter]);
 
   return (
     <>

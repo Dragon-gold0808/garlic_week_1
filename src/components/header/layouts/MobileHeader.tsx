@@ -9,6 +9,7 @@ import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { MapViewButton } from '../components/MapViewButton';
 import { ListViewButton } from '../components/ListViewButton';
 import { CalendarViewButton } from '../components/CalendarViewButton';
+import { JoinMobileButton } from '../components/JoinMobileButton';
 
 interface MobileHeaderProps {
   toggleSider: () => void;
@@ -19,7 +20,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
   return (
     <BaseRow justify="space-between" align="middle">
       <BaseCol>
-        <HeaderSearch />
+        <JoinMobileButton />
       </BaseCol>
 
       <BaseCol>

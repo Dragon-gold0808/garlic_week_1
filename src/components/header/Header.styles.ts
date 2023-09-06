@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { BurgerIcon } from '@app/components/common/Burger/BurgerIcon';
-import { GitHubButton } from '@app/components/header/components/GithubButton/GitHubButton';
+import { JoinButton } from '@app/components/header/components/JoinButton/JoinButton';
 import { LAYOUT, media } from '@app/styles/themes/constants';
 import { BaseCollapse } from '../common/BaseCollapse/BaseCollapse';
 import { BaseCol } from '../common/BaseCol/BaseCol';
@@ -80,10 +80,10 @@ export const ProfileColumn = styled(BaseCol)<ProfileColumn>`
   }
 `;
 
-export const GHButton = styled(GitHubButton)`
+export const JButton = styled(JoinButton)`
   display: none;
 
-  @media only screen and ${media.lg} {
+  @media only screen and ${media.xs} {
     display: block;
   }
 `;
