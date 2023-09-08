@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { BaseFeed } from '@app/components/common/BaseFeed/BaseFeed';
 import { NotFound } from '@app/components/common/NotFound/NotFound';
@@ -68,7 +69,8 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
         {detailModal.businessName}
       </Title>
       {garlickyFeature(detailModal.garlickyFeature)}
-      {detailModal.details}
+      {detailModal.businessHours}
+      {detailModal.typeOfParticipant}
       {detailModal.date}
       {detailModal.address}
       {detailModal.city + ',' + detailModal.postalCode}
@@ -78,6 +80,7 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
       {website(detailModal.facebook, 'Facebook: ')}
       {website(detailModal.insta, 'Instagram: ')}
       {website(detailModal.twitter, 'Twitter: ')}
+      {detailModal.credit}
     </Space>
   ) : null;
 

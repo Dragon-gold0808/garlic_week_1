@@ -17,7 +17,7 @@ export const JoinButton: React.FC = (props) => {
       $isDark={theme === 'dark'}
       {...props}
     >
-      Join Actitivy
+      Join Ontario Garlic Week
     </Button>
   );
 };

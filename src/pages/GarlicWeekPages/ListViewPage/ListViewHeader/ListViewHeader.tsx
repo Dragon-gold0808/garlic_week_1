@@ -19,7 +19,7 @@ export const ListViewHeader: React.FC<ListViewHeaderProps> = ({ filters, setFilt
 
   return (
     <>
-      <NFTCardHeader title={'Garlic Week'}>
+      <NFTCardHeader title={'Ontario Garlic Week (Sept 22-Oct 1, 2023)'}>
         {mobileOnly && (
           <BaseButton size="large" noStyle type="text" icon={<FilterIcon />} onClick={() => setModalOpen(true)} />
         )}

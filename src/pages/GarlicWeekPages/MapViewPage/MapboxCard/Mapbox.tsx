@@ -155,7 +155,8 @@ export default function Mapbox() {
                 {popupInfo.businessName}
               </Title>
               {garlickyFeature(popupInfo.garlickyFeature)}
-              {popupInfo.details}
+              {popupInfo.businessHours}
+              {popupInfo.typeOfParticipant}
               {popupInfo.date}
               {popupInfo.address}
               {popupInfo.city + ',' + popupInfo.postalCode}
@@ -165,6 +166,7 @@ export default function Mapbox() {
               {website(popupInfo.facebook, 'Facebook: ')}
               {website(popupInfo.insta, 'Instagram: ')}
               {website(popupInfo.twitter, 'Twitter: ')}
+              {popupInfo.credit}
             </Space>
             {theme === 'dark' ? (
               <style>
