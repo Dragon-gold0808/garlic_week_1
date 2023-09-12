@@ -2,6 +2,7 @@ import React from 'react';
 import { DesktopHeader } from './layouts/DesktopHeader';
 import { MobileHeader } from './layouts/MobileHeader';
 import { useResponsive } from '@app/hooks/useResponsive';
+import { Button } from 'antd';
 
 interface HeaderProps {
   toggleSider: () => void;

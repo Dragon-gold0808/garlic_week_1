@@ -27,6 +27,7 @@ const initialState = {
   filter: {
     category: [],
     city: [],
+    businessName: [],
   },
   filteredEvents: [],
 };
@@ -45,9 +46,13 @@ export const filterSlice = createSlice({
     changeEvents: (state, action) => {
       state.filteredEvents = action.payload;
     },
+    setBusinessNameFilter: (state, action) => {
+      // state.query = action.payload.query;
+      state.filter.businessName = action.payload;
+    },
   },
 });
 
-export const { setCityFilter, changeEvents, setSearchedItem } = filterSlice.actions;
+export const { setCityFilter, changeEvents, setSearchedItem, setBusinessNameFilter } = filterSlice.actions;
 
 export default filterSlice.reducer;

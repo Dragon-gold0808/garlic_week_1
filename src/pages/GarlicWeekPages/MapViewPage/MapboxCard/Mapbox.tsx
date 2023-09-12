@@ -15,7 +15,7 @@ import { setSearchedItem } from '@app/store/slices/filterSlice';
 import { useDispatch } from 'react-redux';
 
 const { Title, Text, Link } = BaseTypography;
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+// mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 import GeocoderControl from './GeocoderControl';
 import Pin from './pin';

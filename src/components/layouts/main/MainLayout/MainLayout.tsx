@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, MouseEvent } from 'react';
 import { Header } from '../../../header/Header';
 import MainSider from '../sider/MainSider/MainSider';
 import MainContent from '../MainContent/MainContent';
@@ -16,8 +16,10 @@ import { useResponsive } from '@app/hooks/useResponsive';
 import { getEvents, GarlicEvents } from '@app/api/events.api';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { changeEvents, setCityFilter } from '@app/store/slices/filterSlice';
+import { changeEvents, setBusinessNameFilter, setCityFilter } from '@app/store/slices/filterSlice';
 import { useDispatch } from 'react-redux';
+import { Button } from 'antd';
+
 
 export interface ListViewFilterState {
   category: string[];
@@ -42,6 +44,10 @@ const MainLayout: React.FC = () => {
   const [secondFilteredActivity, setSecondFilteredActivity] = useState<GarlicEvents[]>([]);
   const [hasMore] = useState(true);
 
+  const [sortBusinessNameClicked, setSortBusinessNameClicked] = useState(false);
+  const [sortCityNameClicked, setSortCityNameClicked] = useState(false);
+  const [sortDateClicked, setSortDateClicked] = useState(false);
+
   const [filters, setFilters] = useState<ListViewFilterState>({
     category: [],
     city: [],
@@ -49,15 +55,39 @@ const MainLayout: React.FC = () => {
 
   useEffect(() => {
     getEvents().then((res) => {
-      setActivity(res);
+      if (!sortBusinessNameClicked && !sortCityNameClicked && !sortDateClicked) {
+        setSortCityNameClicked(false);
+        setSortBusinessNameClicked(false);
+        setSortDateClicked(false);
+        setActivity(res);
+      }
+      if (sortBusinessNameClicked) {
+        setSortCityNameClicked(false);
+        setSortDateClicked(false);
+        setActivity(res.sort((a, b) => a.businessName.localeCompare(b.businessName)));
+      } 
+      if (sortCityNameClicked) {
+        setSortBusinessNameClicked(false);
+        setSortDateClicked(false);
+        setActivity(res.sort((a, b) => a.city.localeCompare(b.city)));
+      }
+      if (sortDateClicked) {
+        setSortCityNameClicked(false);
+        setSortBusinessNameClicked(false);
+        setActivity(
+          res.sort((a, b) => {
+            if (a.date !== undefined && b.date !== undefined) {
+              return b.date.localeCompare(a.date);
+            } else {
+              // Handle the case when either a.date or b.date is undefined
+              return 0; // or any other appropriate value
+            }
+          }));
+      }
       setFirstFilteredActivity(res);
       setSecondFilteredActivity(res);
     });
-  }, []);
-
-  const next = () => {
-    getEvents().then((newActivity) => setActivity(activity.concat(newActivity)));
-  };
+  }, [sortBusinessNameClicked, sortCityNameClicked, sortDateClicked]);
 
   dispatch(setCityFilter([...new Set(activity.map((obj) => obj.city))]));
 
@@ -66,6 +96,9 @@ const MainLayout: React.FC = () => {
       setFirstFilteredActivity(
         activity.filter((item) => filters.category.some((filter) => item.category.split(',').includes(filter))),
       );
+      // setFirstFilteredActivity(
+      //   activity.filter((item) => filters.category.some((filter) => item.category.split(',').includes(filter))),
+      // );
     } else setFirstFilteredActivity(activity);
   }, [filters.category, activity]);
 
@@ -89,8 +122,67 @@ const MainLayout: React.FC = () => {
         <MainContent id="main-content" $isTwoColumnsLayout={isTwoColumnsLayout}>
           <div>{/* <Outlet /> */}</div>
           <BaseRow gutter={[30, 0]}>
-            <BaseCol span={24}>
+            {/* <BaseCol span={24}>
               <ListViewHeader filters={filters} setFilters={setFilters} />
+            </BaseCol> */}
+
+            <BaseCol span={24}>
+              <BaseRow gutter={[30, 0]}>
+                <BaseCol span={8}>
+                  <ListViewHeader filters={filters} setFilters={setFilters} />
+                </BaseCol>
+                <BaseCol span={3}>
+                  <Button 
+                    size="small"
+                    onClick={() => {
+                      setSortBusinessNameClicked(!sortBusinessNameClicked);
+                      setSortCityNameClicked(false);
+                      setSortDateClicked(false);
+                    }}
+                    style={
+                      sortBusinessNameClicked
+                        ? { backgroundColor: '#339cfd', color: 'white' }
+                        : { backgroundColor: '#25284b', color: 'white' }
+                    }
+                  >
+                    Sort by Business Name
+                  </Button>
+                </BaseCol>
+                <BaseCol span={3}>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      setSortCityNameClicked(!sortCityNameClicked);
+                      setSortBusinessNameClicked(false);
+                      setSortDateClicked(false);
+                    }}
+                    style={
+                      sortCityNameClicked
+                        ? { backgroundColor: '#339cfd', color: 'white' }
+                        : { backgroundColor: '#25284b', color: 'white' }
+                    }
+                  >
+                    Sort by City Name
+                  </Button>
+                </BaseCol>
+                <BaseCol span={1}>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      setSortDateClicked(!sortDateClicked);
+                      setSortBusinessNameClicked(false);
+                      setSortCityNameClicked(false);
+                    }}
+                    style={
+                      sortDateClicked
+                        ? { backgroundColor: '#339cfd', color: 'white' }
+                        : { backgroundColor: '#25284b', color: 'white' }
+                    }
+                  >
+                    Sort by Date
+                  </Button>
+                </BaseCol>
+              </BaseRow>
             </BaseCol>
 
             <BaseCol xs={24} sm={24} md={18} xl={18}>
