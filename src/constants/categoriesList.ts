@@ -22,11 +22,11 @@ export const categoriesList: Category[] = [
   },
   {
     name: 'Restaurant',
-    title: 'Restaurant',
+    title: 'Garlicky Food & Beverage',
   },
   {
     name: 'Special Activity',
-    title: 'Special Activity',
+    title: 'Garlic Spotlight',
   },
   {
     name: 'Community Organization',
@@ -34,6 +34,6 @@ export const categoriesList: Category[] = [
   },
   {
     name: 'Independent Grocer',
-    title: 'Independent Grocer',
+    title: 'Independent Retail',
   },
 ];

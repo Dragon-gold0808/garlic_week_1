@@ -20,7 +20,7 @@ function Pin({ title = <></>, category = '' }) {
   switch (category) {
     case 'Farm':
       picon = faStore;
-      pic = 'pin2';
+      pic = 'pin4';
       break;
     case 'Restaurant':
       picon = faUtensils;
@@ -28,7 +28,7 @@ function Pin({ title = <></>, category = '' }) {
       break;
     case "Farmers' Market":
       picon = faWheatAlt;
-      pic = 'pin4';
+      pic = 'pin2';
       break;
     case 'Independent Grocer':
       picon = faCartShopping;

@@ -62,18 +62,39 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
         {garlickyFeature}
       </Text>
     ) : null;
+  const businessHours = (businessHours: string | undefined) =>
+    businessHours ? (
+      <Text style={{ color: 'inherit' }}>
+        <span style={{ fontWeight: 'bold' }}>Hours: </span>
+        {businessHours}
+      </Text>
+    ) : null;
+  const address = (address: string | undefined) =>
+    address ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Address: </span>
+        {address}
+      </Text>
+    ) : null;
+
+  const date = (date: string | undefined) =>
+    date ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Garlic Spotlight Date/Time: </span>
+        {date}
+      </Text>
+    ) : null;
 
   const details = detailModal ? (
     <Space direction="vertical">
+      <Title style={{ textAlign: 'center', fontSize: '12px' }}>Ontario Garlic Week (Sept 22-Oct 1, 2023)</Title>
       <Title level={5} style={{ textAlign: 'center' }}>
         {detailModal.businessName}
       </Title>
       {garlickyFeature(detailModal.garlickyFeature)}
-      {detailModal.businessHours}
-      {detailModal.typeOfParticipant}
-      {detailModal.date}
-      {detailModal.address}
-      {detailModal.city + ',' + detailModal.postalCode}
+      {businessHours(detailModal.businessHours)}
+      {date(detailModal.date)}
+      {address(detailModal.address + ', ' + detailModal.city + ', ' + detailModal.postalCode)}
       {detailModal.tel && 'Tel: ' + detailModal.tel}
       {detailModal.email && 'Email: ' + detailModal.email}
       {website(detailModal.website, 'Website: ')}

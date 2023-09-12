@@ -60,6 +60,28 @@ export default function Mapbox() {
       </Text>
     ) : null;
 
+  const businessHours = (businessHours: string | undefined) =>
+    businessHours ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Hours: </span>
+        {businessHours}
+      </Text>
+    ) : null;
+  const address = (address: string | undefined) =>
+    address ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Address: </span>
+        {address}
+      </Text>
+    ) : null;
+  const date = (date: string | undefined) =>
+    date ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Garlic Spotlight Date/Time: </span>
+        {date}
+      </Text>
+    ) : null;
+
   useEffect(() => {
     if (selectedItem._id) setPopupInfo(selectedItem);
     // if (selectedItem.businessName) setOverlayOpen(false);
@@ -151,15 +173,14 @@ export default function Mapbox() {
             style={{ fontFamily: FONT_FAMILY.main }}
           >
             <Space direction="vertical">
+              <Title style={{ textAlign: 'center', fontSize: '10px' }}>Ontario Garlic Week (Sept 22-Oct 1, 2023)</Title>
               <Title level={5} style={{ textAlign: 'center' }}>
                 {popupInfo.businessName}
               </Title>
               {garlickyFeature(popupInfo.garlickyFeature)}
-              {popupInfo.businessHours}
-              {popupInfo.typeOfParticipant}
-              {popupInfo.date}
-              {popupInfo.address}
-              {popupInfo.city + ',' + popupInfo.postalCode}
+              {businessHours(popupInfo.businessHours)}
+              {date(popupInfo.date)}
+              {address(popupInfo.address + ',' + popupInfo.city + ',' + popupInfo.postalCode)}
               {popupInfo.tel && 'Tel: ' + popupInfo.tel}
               {popupInfo.email && 'Email: ' + popupInfo.email}
               {website(popupInfo.website, 'Website: ')}
