@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { shadeColor } from '@app/utils/utils';
 import { graphic } from 'echarts';
 import { BASE_COLORS } from '../constants';

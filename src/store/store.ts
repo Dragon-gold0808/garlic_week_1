@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { configureStore } from '@reduxjs/toolkit';
 import { errorLoggingMiddleware } from '@app/store/middlewares/errorLogging.middleware';
 import rootReducer from '@app/store/slices';

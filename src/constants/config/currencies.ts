@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { CurrencyTypeEnum } from '@app/interfaces/interfaces';
 
 export const currencies = {

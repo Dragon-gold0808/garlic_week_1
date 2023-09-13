@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from 'styled-components';
 import { BaseCard } from '@app/components/common/BaseCard/BaseCard';
 

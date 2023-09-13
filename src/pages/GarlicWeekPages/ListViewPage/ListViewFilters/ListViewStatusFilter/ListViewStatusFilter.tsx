@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { categoriesList } from '@app/constants/categoriesList';

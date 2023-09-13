@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { NumericLiteral } from 'typescript';
 
 export type Dimension = number | string;

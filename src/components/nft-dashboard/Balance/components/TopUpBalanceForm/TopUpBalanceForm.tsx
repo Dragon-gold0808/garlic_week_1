@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import creditCardType from 'credit-card-type';
 import { useTranslation } from 'react-i18next';

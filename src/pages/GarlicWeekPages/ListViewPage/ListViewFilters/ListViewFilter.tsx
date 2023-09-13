@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { NFTCard } from '@app/components/nft-dashboard/common/NFTCard/NFTCard';
 import { ListViewStatusFilter } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewFilters/ListViewStatusFilter/ListViewStatusFilter';

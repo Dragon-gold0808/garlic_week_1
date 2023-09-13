@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { FilterIcon } from '@app/components/common/icons/FilterIcon';

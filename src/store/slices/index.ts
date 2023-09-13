@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import userReducer from '@app/store/slices/userSlice';
 import authReducer from '@app/store/slices/authSlice';
 import nightModeReducer from '@app/store/slices/nightModeSlice';

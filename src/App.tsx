@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { ConfigProvider } from 'antd';
 import { HelmetProvider } from 'react-helmet-async';

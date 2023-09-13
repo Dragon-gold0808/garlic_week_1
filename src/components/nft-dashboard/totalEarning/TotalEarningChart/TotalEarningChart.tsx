@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { BaseChart, getDefaultTooltipStyles } from '@app/components/common/charts/BaseChart';
 import { ChartData, ChartSeriesData, CurrencyTypeEnum } from '@app/interfaces/interfaces';

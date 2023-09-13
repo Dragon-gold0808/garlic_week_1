@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { Suspense } from 'react';
 import { Loading } from '@app/components/common/Loading/Loading';
 

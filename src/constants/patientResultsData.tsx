@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 interface Result {
   id: number;
   status: number;

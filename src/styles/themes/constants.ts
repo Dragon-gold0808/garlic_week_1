@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export const BORDER_RADIUS = '7px';
 
 export const BASE_COLORS = {

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 interface Specifity {
   id: number;
   name: string;

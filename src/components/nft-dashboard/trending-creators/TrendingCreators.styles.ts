@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from 'styled-components';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';

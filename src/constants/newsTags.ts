@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // TODO add i18n
 
 interface Tag {

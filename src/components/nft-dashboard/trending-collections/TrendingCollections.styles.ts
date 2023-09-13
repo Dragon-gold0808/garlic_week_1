@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from 'styled-components';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { BREAKPOINTS } from '@app/styles/themes/constants';

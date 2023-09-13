@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createAction, createSlice, PrepareAction } from '@reduxjs/toolkit';
 
 const DEFAULT_NIGHT_MODE_INTERVAL = [20 * 3600 * 1000, 8 * 3600 * 1000];

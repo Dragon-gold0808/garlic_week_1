@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 interface ModalSizes {
   small: string;
   medium: string;

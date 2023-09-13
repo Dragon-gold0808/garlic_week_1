@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ReportHandler } from 'web-vitals';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

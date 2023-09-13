@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { TopUpDataProps } from '../../interfaces/interfaces';

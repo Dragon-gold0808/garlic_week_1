@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   ResetPasswordRequest,

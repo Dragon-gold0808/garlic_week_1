@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useMemo, useRef } from 'react';
 import { BaseFeed } from '@app/components/common/BaseFeed/BaseFeed';
 import { NotFound } from '@app/components/common/NotFound/NotFound';

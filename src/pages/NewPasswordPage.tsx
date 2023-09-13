@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { NewPasswordForm } from '@app/components/auth/NewPasswordForm/NewPasswordForm';
 import { useTranslation } from 'react-i18next';

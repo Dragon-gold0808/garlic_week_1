@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
 import { notificationController } from '@app/controllers/notificationController';
 

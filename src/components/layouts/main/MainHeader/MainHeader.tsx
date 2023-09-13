@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { WithChildrenProps } from '@app/types/generalTypes';
 import React from 'react';
 import * as S from './MainHeader.styles';

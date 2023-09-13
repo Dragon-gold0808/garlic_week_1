@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export interface CardTheme {
   id: number;
   background: string;

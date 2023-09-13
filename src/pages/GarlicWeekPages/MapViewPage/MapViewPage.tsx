@@ -8,6 +8,7 @@ import Mapbox from './MapboxCard/Mapbox';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import * as S from '@app/pages/maps/maps.styles';
 
+
 const GarlicWeekPage: React.FC = () => {
   // const { t } = useTranslation();
 

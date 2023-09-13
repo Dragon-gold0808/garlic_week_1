@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useEffect } from 'react';
 import { setTheme } from '@app/store/slices/themeSlice';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';

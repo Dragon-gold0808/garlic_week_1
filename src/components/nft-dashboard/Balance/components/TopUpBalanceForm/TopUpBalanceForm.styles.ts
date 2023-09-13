@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from 'styled-components';
 import { BaseRadio } from '@app/components/common/BaseRadio/BaseRadio';
 import { FONT_SIZE } from '@app/styles/themes/constants';

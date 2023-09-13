@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useEffect, useRef } from 'react';
 import { useAppSelector } from './reduxHooks';
 import { ConfigProvider } from 'antd';

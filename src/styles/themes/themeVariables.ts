@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ThemeType } from '@app/interfaces/interfaces';
 import { hexToRGB } from '@app/utils/utils';
 import { css } from 'styled-components';

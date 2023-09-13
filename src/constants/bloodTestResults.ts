@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export interface BloodTestResult {
   key: number;
   test: string;

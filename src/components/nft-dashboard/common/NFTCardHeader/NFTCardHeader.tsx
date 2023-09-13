@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import React, { PropsWithChildren } from 'react';
 import * as S from './NFTCardHeader.styles';

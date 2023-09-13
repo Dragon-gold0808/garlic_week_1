@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { Navigate } from 'react-router-dom';

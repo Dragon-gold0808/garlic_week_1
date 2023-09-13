@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from 'styled-components';
 import { LAYOUT, media } from '@app/styles/themes/constants';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';

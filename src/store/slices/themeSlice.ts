@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ThemeType } from '@app/interfaces/interfaces';
 import { createSlice, createAction, PrepareAction } from '@reduxjs/toolkit';
 

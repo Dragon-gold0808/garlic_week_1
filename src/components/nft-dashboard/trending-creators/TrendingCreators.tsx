@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useRef, useState } from 'react';
 import Stories from 'react-insta-stories';
 import Slider from 'react-slick';

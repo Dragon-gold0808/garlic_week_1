@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LoginForm } from '@app/components/auth/LoginForm/LoginForm';

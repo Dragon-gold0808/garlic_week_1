@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { BaseAvatar } from '@app/components/common/BaseAvatar/BaseAvatar';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import styled from 'styled-components';

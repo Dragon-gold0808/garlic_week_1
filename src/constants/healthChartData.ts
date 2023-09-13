@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export interface HealthFactor {
   value: number;
   name: string;

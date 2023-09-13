@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState, MouseEvent } from 'react';
 import { Header } from '../../../header/Header';
 import MainSider from '../sider/MainSider/MainSider';
@@ -16,7 +17,7 @@ import { useResponsive } from '@app/hooks/useResponsive';
 import { getEvents, GarlicEvents } from '@app/api/events.api';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { changeEvents, setBusinessNameFilter, setCityFilter } from '@app/store/slices/filterSlice';
+import { changeEvents, setCityFilter } from '@app/store/slices/filterSlice';
 import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 
@@ -47,6 +48,9 @@ const MainLayout: React.FC = () => {
   const [sortBusinessNameClicked, setSortBusinessNameClicked] = useState(false);
   const [sortCityNameClicked, setSortCityNameClicked] = useState(false);
   const [sortDateClicked, setSortDateClicked] = useState(false);
+
+  const [spotlighclicked, setspotlighclicked] = useState(false);
+
 
   const [filters, setFilters] = useState<ListViewFilterState>({
     category: [],
@@ -96,10 +100,19 @@ const MainLayout: React.FC = () => {
       setFirstFilteredActivity(
         activity.filter((item) => filters.category.some((filter) => item.category.split(',').includes(filter))),
       );
+      if (filters.category.includes("Special Activity")) {
+        // spotlighclicked ? setspotlighclicked(false) : setspotlighclicked(true);
+        setspotlighclicked(true)
+      } else {
+        setspotlighclicked(false);
+      }
       // setFirstFilteredActivity(
       //   activity.filter((item) => filters.category.some((filter) => item.category.split(',').includes(filter))),
       // );
-    } else setFirstFilteredActivity(activity);
+    } else {
+      setFirstFilteredActivity(activity);
+      setspotlighclicked(false);
+    }
   }, [filters.category, activity]);
 
   useEffect(() => {
@@ -131,7 +144,7 @@ const MainLayout: React.FC = () => {
                 <BaseCol span={8}>
                   <ListViewHeader filters={filters} setFilters={setFilters} />
                 </BaseCol>
-                <BaseCol span={3}>
+                <BaseCol span={3} style={location.pathname === "/" ? { display: 'block' } : { display: 'none'}}>
                   <Button 
                     size="small"
                     onClick={() => {
@@ -148,7 +161,7 @@ const MainLayout: React.FC = () => {
                     Sort by Business Name
                   </Button>
                 </BaseCol>
-                <BaseCol span={3}>
+                <BaseCol span={3} style={location.pathname === "/" ? { display: 'block' } : { display: 'none'}}>
                   <Button
                     size="small"
                     onClick={() => {
@@ -162,10 +175,10 @@ const MainLayout: React.FC = () => {
                         : { backgroundColor: '#25284b', color: 'white' }
                     }
                   >
-                    Sort by City Name
+                    Sort by Town Name
                   </Button>
                 </BaseCol>
-                <BaseCol span={1}>
+                <BaseCol span={1} style={spotlighclicked && location.pathname === "/" ? { display: 'block' } : { display: 'none'}}>
                   <Button
                     size="small"
                     onClick={() => {

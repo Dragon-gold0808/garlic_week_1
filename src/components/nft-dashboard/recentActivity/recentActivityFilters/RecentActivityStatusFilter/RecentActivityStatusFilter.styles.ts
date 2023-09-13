@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from 'styled-components';
 import { BaseCheckbox } from '@app/components/common/BaseCheckbox/BaseCheckbox';
 
