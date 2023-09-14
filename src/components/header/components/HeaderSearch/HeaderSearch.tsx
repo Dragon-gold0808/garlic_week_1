@@ -29,7 +29,7 @@ export const HeaderSearch: React.FC = () => {
   const sortedResults = query
     ? categoriesList.reduce((acc, current) => {
         const searchResults = events.filter(
-          (event) => event.category === current.name && event.businessName.toLowerCase().includes(query.toLowerCase()),
+          (event) => event.category === current.name && event.businessName?.toLowerCase().includes(query.toLowerCase()),
         );
 
         return searchResults.length > 0 ? acc.concat({ category: current.name, events: searchResults }) : acc;

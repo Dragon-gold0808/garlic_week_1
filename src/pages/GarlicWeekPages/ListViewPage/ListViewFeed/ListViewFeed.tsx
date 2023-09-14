@@ -65,8 +65,32 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
   const businessHours = (businessHours: string | undefined) =>
     businessHours ? (
       <Text style={{ color: 'inherit' }}>
-        <span style={{ fontWeight: 'bold' }}>Hours: </span>
+        <span style={{ fontWeight: 'bold' }}>Business Hours: </span>
         {businessHours}
+        <hr />
+      </Text>
+    ) : null;
+
+  const garlicSupplier = (garlicSupplier: string | undefined) =>
+    garlicSupplier ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Garlic Supplied by </span>
+        {garlicSupplier}
+      </Text>
+    ) : null;
+  const garlicSpotLight = (garlicSpotLight: string | undefined) =>
+    garlicSpotLight ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Garlic Spotlight: </span>
+        {garlicSpotLight}
+      </Text>
+    ) : null;
+  const activityDate = (activityDate: string | undefined) =>
+    activityDate ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Activity Date/Hours: </span>
+        {activityDate}
+        <hr />
       </Text>
     ) : null;
   const address = (address: string | undefined) =>
@@ -76,32 +100,44 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
         {address}
       </Text>
     ) : null;
-
-  const date = (date: string | undefined) =>
-    date ? (
+  const cuisine = (cuisine: string | undefined) =>
+    cuisine ? (
       <Text style={{ color: 'inherit', fontSize: '13px' }}>
-        <span style={{ fontWeight: 'bold' }}>Garlic Spotlight Date/Time: </span>
-        {date}
+        <span style={{ fontWeight: 'bold' }}>Cuisine: </span>
+        {cuisine}
+      </Text>
+    ) : null;
+  const typeOfService = (typeOfService: string | undefined) =>
+    typeOfService ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        {typeOfService}
+        <hr />
       </Text>
     ) : null;
 
   const details = detailModal ? (
     <Space direction="vertical">
-      <Title style={{ textAlign: 'center', fontSize: '12px' }}>Ontario Garlic Week (Sept 22-Oct 1, 2023)</Title>
+      <Title style={{ textAlign: 'center', fontSize: '12px', color: '#23e60e'}}>Ontario Garlic Week (Sept 22-Oct 1, 2023)</Title>
       <Title level={5} style={{ textAlign: 'center' }}>
-        {detailModal.businessName}
+        {detailModal.businessName + ", " + detailModal.city}
       </Title>
-      {garlickyFeature(detailModal.garlickyFeature)}
+      {garlickyFeature(detailModal.gralicDetail)}
+      {garlicSupplier(detailModal.supplier)}
       {businessHours(detailModal.businessHours)}
-      {date(detailModal.date)}
-      {address(detailModal.address + ', ' + detailModal.city + ', ' + detailModal.postalCode)}
-      {detailModal.tel && 'Tel: ' + detailModal.tel}
+      
+      {garlicSpotLight(detailModal.garlicSpotlight)}
+      {activityDate(detailModal.activityDate)}
+      
+      {address(detailModal.streetAddress1 + ', ' + detailModal.city + ', ' + detailModal.postalCode)}
+      {cuisine(detailModal.cuisine)}
+      {typeOfService(detailModal.typeOfService)}
       {detailModal.email && 'Email: ' + detailModal.email}
       {website(detailModal.website, 'Website: ')}
       {website(detailModal.facebook, 'Facebook: ')}
-      {website(detailModal.insta, 'Instagram: ')}
+      {website(detailModal.instagram, 'Instagram: ')}
       {website(detailModal.twitter, 'Twitter: ')}
-      {detailModal.credit}
+      {<br/>}
+      <Title style={{ textAlign: 'center', fontSize: '12px', color: '#23e60e'}}>{detailModal.credit}</Title>
     </Space>
   ) : null;
 

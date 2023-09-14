@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useState, MouseEvent } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../../../header/Header';
-import MainSider from '../sider/MainSider/MainSider';
 import MainContent from '../MainContent/MainContent';
 import { MainHeader } from '../MainHeader/MainHeader';
 import * as S from './MainLayout.styles';
@@ -11,7 +10,6 @@ import { MEDICAL_DASHBOARD_PATH, NFT_DASHBOARD_PATH } from '@app/components/rout
 import { References } from '@app/components/common/References/References';
 
 import { ListViewHeader } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewHeader/ListViewHeader';
-import { ListViewFeed } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewFeed/ListViewFeed';
 import { ListViewFilter } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewFilters/ListViewFilter';
 import { useResponsive } from '@app/hooks/useResponsive';
 import { getEvents, GarlicEvents } from '@app/api/events.api';
@@ -43,7 +41,6 @@ const MainLayout: React.FC = () => {
   const [activity, setActivity] = useState<GarlicEvents[]>([]);
   const [firstFilteredActivity, setFirstFilteredActivity] = useState<GarlicEvents[]>([]);
   const [secondFilteredActivity, setSecondFilteredActivity] = useState<GarlicEvents[]>([]);
-  const [hasMore] = useState(true);
 
   const [sortBusinessNameClicked, setSortBusinessNameClicked] = useState(false);
   const [sortCityNameClicked, setSortCityNameClicked] = useState(false);
@@ -68,20 +65,31 @@ const MainLayout: React.FC = () => {
       if (sortBusinessNameClicked) {
         setSortCityNameClicked(false);
         setSortDateClicked(false);
-        setActivity(res.sort((a, b) => a.businessName.localeCompare(b.businessName)));
+        setActivity(res.sort((a, b) => {
+          if (a.businessName && b.businessName) {
+            return a.businessName.localeCompare(b.businessName);
+          }
+          // Handle the case where either a.businessName or b.businessName is undefined
+          return 0; // or any other appropriate value
+        }));
       } 
       if (sortCityNameClicked) {
         setSortBusinessNameClicked(false);
         setSortDateClicked(false);
-        setActivity(res.sort((a, b) => a.city.localeCompare(b.city)));
+        setActivity(res.sort((a, b) => {
+          if (a.city && b.city) {
+            return a.city.localeCompare(b.city);
+          } 
+          return 0; 
+        }));
       }
       if (sortDateClicked) {
         setSortCityNameClicked(false);
         setSortBusinessNameClicked(false);
         setActivity(
           res.sort((a, b) => {
-            if (a.date !== undefined && b.date !== undefined) {
-              return b.date.localeCompare(a.date);
+            if (a.activityDate !== undefined && b.activityDate !== undefined) {
+              return b.activityDate.localeCompare(a.activityDate);
             } else {
               // Handle the case when either a.date or b.date is undefined
               return 0; // or any other appropriate value

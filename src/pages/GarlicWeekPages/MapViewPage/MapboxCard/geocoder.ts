@@ -25,27 +25,27 @@ export const MapboxForwardGeocoding = () => {
       .finally(() => setLoaded(true));
   }, []);
 
-  useEffect(() => {
-    // const addresses = ['New York, NY', 'San Francisco, CA', 'London, UK'];
+  // useEffect(() => {
+  //   // const addresses = ['New York, NY', 'San Francisco, CA', 'London, UK'];
 
-    events.map((event, key) => {
-      const forwardGeocodeRequest = {
-        query: event.address,
-        limit: 1,
-      };
-      geocodingClient
-        .forwardGeocode(forwardGeocodeRequest)
-        .send()
-        .then((response) => {
-          const results = response.body.features[0].center;
-          setData((data) => [...data, { ...data[key], coordinate: results }]);
-          console.log(results);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    });
-  }, []);
+  //   events.map((event, key) => {
+  //     const forwardGeocodeRequest = {
+  //       query: event.streetAddress1,
+  //       limit: 1,
+  //     };
+  //     geocodingClient
+  //       .forwardGeocode(forwardGeocodeRequest)
+  //       .send()
+  //       .then((response) => {
+  //         const results = response.body.features[0].center;
+  //         setData((data) => [...data, { ...data[key], coordinate: results }]);
+  //         console.log(results);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   });
+  // }, []);
   console.log(data);
   return data;
 };

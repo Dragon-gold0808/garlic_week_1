@@ -15,7 +15,7 @@ import { setSearchedItem } from '@app/store/slices/filterSlice';
 import { useDispatch } from 'react-redux';
 
 const { Title, Text, Link } = BaseTypography;
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+(mapboxgl as any).workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 import GeocoderControl from './GeocoderControl';
 import Pin from './pin';
@@ -52,19 +52,53 @@ export default function Mapbox() {
   console.log(geocodingClient);
   const events: GarlicEvents[] = useAppSelector((state) => state.filter.filteredEvents);
   console.log(events);
+
+  const website = (data = '', type = '') =>
+    data && data !== 'none' && data != 'N/a' ? (
+      <Text>
+        {type}
+        <Link href={`https://${data}`} target="_blank">
+          {data}
+        </Link>
+      </Text>
+    ) : null;
+
   const garlickyFeature = (garlickyFeature: string | undefined) =>
     garlickyFeature ? (
-      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+      <Text style={{ color: 'inherit' }}>
         <span style={{ fontWeight: 'bold' }}>Garlicky Feature: </span>
         {garlickyFeature}
       </Text>
     ) : null;
-
   const businessHours = (businessHours: string | undefined) =>
     businessHours ? (
-      <Text style={{ color: 'inherit', fontSize: '13px' }}>
-        <span style={{ fontWeight: 'bold' }}>Hours: </span>
+      <Text style={{ color: 'inherit' }}>
+        <span style={{ fontWeight: 'bold' }}>Business Hours: </span>
         {businessHours}
+        <hr />
+      </Text>
+    ) : null;
+
+  const garlicSupplier = (garlicSupplier: string | undefined) =>
+    garlicSupplier ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Garlic Supplied by </span>
+        {garlicSupplier}
+      </Text>
+    ) : null;
+  const garlicSpotLight = (garlicSpotLight: string | undefined) =>
+    garlicSpotLight ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Garlic Spotlight: </span>
+        {garlicSpotLight}
+      </Text>
+    ) : null;
+  const activityDate = (activityDate: string | undefined) =>
+    activityDate ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Activity Date/Hours: </span>
+        {activityDate}
+        <hr />
       </Text>
     ) : null;
   const address = (address: string | undefined) =>
@@ -74,11 +108,18 @@ export default function Mapbox() {
         {address}
       </Text>
     ) : null;
-  const date = (date: string | undefined) =>
-    date ? (
+  const cuisine = (cuisine: string | undefined) =>
+    cuisine ? (
       <Text style={{ color: 'inherit', fontSize: '13px' }}>
-        <span style={{ fontWeight: 'bold' }}>Garlic Spotlight Date/Time: </span>
-        {date}
+        <span style={{ fontWeight: 'bold' }}>Cuisine: </span>
+        {cuisine}
+      </Text>
+    ) : null;
+  const typeOfService = (typeOfService: string | undefined) =>
+    typeOfService ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        {typeOfService}
+        <hr />
       </Text>
     ) : null;
 
@@ -110,8 +151,8 @@ export default function Mapbox() {
                   <Title level={5} style={{ textAlign: 'center', color: 'inherit' }}>
                     {city.businessName}
                   </Title>
-                  {garlickyFeature(city.garlickyFeature)}
-                  {city.address}
+                  {garlickyFeature(city.gralicDetail)}
+                  {city.streetAddress1}
                 </Space>
               }
               category={city.category}
@@ -123,16 +164,6 @@ export default function Mapbox() {
       )),
     [events, popupInfo],
   );
-  console.log(popupInfo);
-  const website = (data = '', type = '') =>
-    data && data !== 'none' && data != 'N/A' ? (
-      <Text>
-        {type}
-        <Link href={`https://${data}`} target="_blank">
-          {data}
-        </Link>
-      </Text>
-    ) : null;
   const StyledPopup = styled(Popup)`
     opacity: 0.5;
   `;
@@ -173,21 +204,27 @@ export default function Mapbox() {
             style={{ fontFamily: FONT_FAMILY.main }}
           >
             <Space direction="vertical">
-              <Title style={{ textAlign: 'center', fontSize: '10px' }}>Ontario Garlic Week (Sept 22-Oct 1, 2023)</Title>
-              <Title level={5} style={{ textAlign: 'center' }}>
-                {popupInfo.businessName}
-              </Title>
-              {garlickyFeature(popupInfo.garlickyFeature)}
-              {businessHours(popupInfo.businessHours)}
-              {date(popupInfo.date)}
-              {address(popupInfo.address + ',' + popupInfo.city + ',' + popupInfo.postalCode)}
-              {popupInfo.tel && 'Tel: ' + popupInfo.tel}
-              {popupInfo.email && 'Email: ' + popupInfo.email}
-              {website(popupInfo.website, 'Website: ')}
-              {website(popupInfo.facebook, 'Facebook: ')}
-              {website(popupInfo.insta, 'Instagram: ')}
-              {website(popupInfo.twitter, 'Twitter: ')}
-              {popupInfo.credit}
+            <Title style={{ textAlign: 'center', fontSize: '12px', color: '#23e60e'}}>Ontario Garlic Week (Sept 22-Oct 1, 2023)</Title>
+            <Title level={5} style={{ textAlign: 'center' }}>
+              {popupInfo.businessName + ", " + popupInfo.city}
+            </Title>
+            {garlickyFeature(popupInfo.gralicDetail)}
+            {garlicSupplier(popupInfo.supplier)}
+            {businessHours(popupInfo.businessHours)}
+            
+            {garlicSpotLight(popupInfo.garlicSpotlight)}
+            {activityDate(popupInfo.activityDate)}
+            
+            {address(popupInfo.streetAddress1 + ', ' + popupInfo.city + ', ' + popupInfo.postalCode)}
+            {cuisine(popupInfo.cuisine)}
+            {typeOfService(popupInfo.typeOfService)}
+            {popupInfo.email && 'Email: ' + popupInfo.email}
+            {website(popupInfo.website, 'Website: ')}
+            {website(popupInfo.facebook, 'Facebook: ')}
+            {website(popupInfo.instagram, 'Instagram: ')}
+            {website(popupInfo.twitter, 'Twitter: ')}
+            {<br/>}
+            <Title style={{ textAlign: 'center', fontSize: '12px', color: '#23e60e'}}>{popupInfo.credit}</Title>
             </Space>
             {theme === 'dark' ? (
               <style>

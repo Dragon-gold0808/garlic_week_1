@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useRef, useState } from 'react';
 import { FilterIcon } from 'components/common/icons/FilterIcon';
 import { SearchOverlay } from './searchOverlay/SearchOverlay/SearchOverlay';
@@ -40,8 +41,9 @@ export const SearchDropdown: React.FC<SearchOverlayProps> = ({
   }, [query, isFilterOpen, setOverlayOpen, selectedItem]);
 
   useEffect(() => {
-    setQuery(selectedItem.businessName);
-    // if (selectedItem.businessName) setOverlayOpen(false);
+    if (selectedItem.businessName) {
+      setQuery(selectedItem.businessName);
+    }
   }, [selectedItem, setQuery]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
